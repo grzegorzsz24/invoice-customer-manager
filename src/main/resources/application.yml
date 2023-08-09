@@ -14,3 +14,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         globally_quoted_indentifiers: true
         format_sql: true
+  sql:
+    init:
+      mode: always
+      continue-on-error: false
