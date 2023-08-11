@@ -15,13 +15,13 @@ import java.util.Collection;
 import java.util.Map;
 
 import static com.example.invoicecustomermanager.enumeration.RoleType.ROLE_USER;
+import static com.example.invoicecustomermanager.query.RoleQuery.*;
+import static java.util.Objects.requireNonNull;
 
 @Repository
 @RequiredArgsConstructor
 @Slf4j
 public class RoleRepositoryImpl implements RoleRepository<Role> {
-    private static final String SELECT_ROLE_BY_NAME_QUERY = "";
-    private static final String INSERT_ROLE_TO_USER = "";
     private final NamedParameterJdbcTemplate jdbc;
 
     @Override
@@ -55,7 +55,7 @@ public class RoleRepositoryImpl implements RoleRepository<Role> {
         log.info("Adding role {} to user id: {}", roleName, userId);
         try {
             Role role = jdbc.queryForObject(SELECT_ROLE_BY_NAME_QUERY, Map.of("roleName", roleName), new RoleRowMapper());
-            jdbc.update(INSERT_ROLE_TO_USER, Map.of("userId", userId, "roleId", role.getId()));
+            jdbc.update(INSERT_ROLE_TO_USER_QUERY, Map.of("userId", userId, "roleId", requireNonNull(role).getId()));
 
         } catch (EmptyResultDataAccessException exception) {
             throw new ApiException("No role found by name: " + ROLE_USER.name());
