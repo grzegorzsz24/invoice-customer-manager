@@ -1,0 +1,3 @@
+USE app;
+
+INSERT INTO Roles(name, permission) VALUES ("ROLE_USER", "READ:USER, READ:CUSTOMER");

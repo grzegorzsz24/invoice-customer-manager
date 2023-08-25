@@ -4,7 +4,7 @@ spring:
     password: root
     username: root
   jpa:
-    generate-ddl: true
+    generate-ddl: false
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL8InnoDBDialect
     hibernate:
